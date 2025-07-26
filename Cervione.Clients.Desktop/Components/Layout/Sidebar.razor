@@ -1,0 +1,17 @@
+﻿@using Cervione.Clients.Desktop.Components.Map
+
+<div class="row">
+    @if (Devices.Count == 0)
+    {
+        
+    }
+    else
+    {
+        @foreach (var device in Devices)
+        {
+            <div class="col-12 rounded-3">
+                <GridCard Title="@device.Name" />
+            </div>
+        }
+    }
+</div>
