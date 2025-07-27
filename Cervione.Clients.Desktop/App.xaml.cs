@@ -7,11 +7,13 @@ public partial class App : Application
         InitializeComponent();
     }
 
-    protected override Window CreateWindow(IActivationState? activationState)
+    protected override Window CreateWindow(IActivationState? state)
     {
         return new Window(new MainPage())
         {
-            Title = "Cervione"
+            Title = "Cervione",
+            MinimumWidth = 1024,
+            MinimumHeight = 720
         };
     }
 }
