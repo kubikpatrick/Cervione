@@ -1,15 +1,15 @@
 ﻿@page "/"
 
-@using Community.Blazor.MapLibre
-
 @using Cervione.Clients.Desktop.Components.Layout
 
+@using Community.Blazor.MapLibre
+
 <div class="row g-0">
-    <div class="col-2">
-        <Sidebar Devices="Devices"/>    
+    <div class="col-lg-3 col-xl-2" style="background-color: #f1f1ee;">
+        <Sidebar Devices="Devices" />
     </div>
     
-    <div class="col-10">
-        <MapLibre Options="Options" @ref="_map" OnStyleLoad="OnStyleLoaded" Class="vh-100 w-100" />
+    <div class="col-lg-9 col-xl-10">
+        <MapLibre Options="Options" @ref="_map" OnLoad="OnMapLoaded" OnStyleLoad="OnStyleLoaded" Class="vh-100 w-100" />
     </div>
 </div>
