@@ -22,7 +22,7 @@ public sealed partial class Home : ComponentBase
     {
         _http = http;
     }
-    
+
     public List<Device> Devices { get; set; } = [];
     public List<Group> Groups { get; set; } = [];
     
