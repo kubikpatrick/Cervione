@@ -1,17 +1,30 @@
 ﻿@using Cervione.Clients.Desktop.Components.Map
 
-<div class="row">
-    @if (Devices.Count == 0)
-    {
-        
-    }
-    else
-    {
-        @foreach (var device in Devices)
-        {
-            <div class="col-12 rounded-3">
-                <GridCard Title="@device.Name" />
-            </div>
-        }
-    }
+<div class="container-fluid vh-100 d-flex bg-light flex-column position-relative overflow-hidden">
+    <div class="btn-group btn-group-sm d-flex justify-content-center p-2" role="group" aria-label="Button group">
+        <button type="button" class="w-100 btn btn-sm btn-primary border-0 rounded-start-3">Groups</button>
+        <button type="button" class="w-100 btn btn-sm btn-primary border-0 rounded-end-3">Devices</button>
+    </div>
+    
+    <div class="d-flex justify-content-center align-items-center p-2 gap-2">
+        <input class="form-control form-control-sm rounded-3" placeholder="Search users or devices" />
+    </div>
+            
+    <div class="flex-grow-1 overflow-auto p-2">
+        <div class="row mx-0">
+            @if (Devices.Count == 0)
+            {
+                <p class="text-center">No devices added yet.</p>
+            }
+            else
+            {
+                @foreach (var device in Devices)
+                {
+                    <div class="col-12 py-3 hover-gray rounded-3">
+                        <HorizontalCard Title="@device.Name" Position="@device.Position"/>
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
