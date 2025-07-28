@@ -25,6 +25,7 @@ public static class MauiProgram
 
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddAuthorizationCore();
+        builder.Services.AddLucideIcons();
         builder.Services.AddSingleton<IApiContextAccessor, ApiContextAccessor>();
         builder.Services.AddScoped<ApiClient>();
         builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
