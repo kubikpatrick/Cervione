@@ -11,7 +11,6 @@ public partial class App : Application
     {
         return new Window(new MainPage())
         {
-            Title = "Cervione",
             MinimumWidth = 1024,
             MinimumHeight = 720
         };
