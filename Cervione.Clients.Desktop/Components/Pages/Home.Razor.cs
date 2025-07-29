@@ -44,27 +44,47 @@ public sealed partial class Home : ComponentBase
         Devices = await _http.GetFromJsonAsync<List<Device>>("/devices/me");
     }
 
-    private async Task OnMapLoaded()
+    private async Task OnStyleLoaded()
+    {
+        await _map.AddControl(ControlType.NavigationControl, ControlPosition.TopRight);
+        await _map.AddControl(ControlType.GlobeControl, ControlPosition.TopRight);
+        
+        var position = await Geolocation.GetLocationAsync(new GeolocationRequest
+        {
+            DesiredAccuracy = GeolocationAccuracy.High,
+            RequestFullAccuracy = true
+        });
+
+        if (position is not null)
+        {
+            await _map.SetZoom(14);
+            await _map.SetCenter(new LngLat(position.Longitude, position.Latitude));
+            await _map.AddMarker(new MarkerOptions
+            {
+                OpacityWhenCovered = "0",
+                Offset = [0, 0],
+                Extensions = new MarkerOptionsExtensions
+                {
+                    HtmlContent = "<div class='me-marker'></div>" 
+                }
+            }, new LngLat(position.Longitude, position.Latitude));
+        }
+
+        await RenderMarkersAsync();
+    }
+
+    private async Task RenderMarkersAsync()
     {
         foreach (var device in Devices)
         {
-            var options = new MarkerOptions
+            await _map.AddMarker(new MarkerOptions
             {
                 OpacityWhenCovered = "0",
                 Extensions = new MarkerOptionsExtensions
                 {
-                    HtmlContent = $"<img src='https://i.pravatar.cc/300' class='rounded-circle border border-3 border-white shadow-lg' alt='{device.Name}' weight='40' height='40' />" 
+                    HtmlContent = "<img src='https://i.pravatar.cc/300' class='marker' />" 
                 }
-            };
-
-            await _map.AddMarker(options, new LngLat(device.Position.Longitude, device.Position.Latitude), new Guid(device.Id));
+            }, new LngLat(device.Position.Longitude, device.Position.Latitude));
         }
-    }
-
-    private async Task OnStyleLoaded()
-    {
-        await _map.AddControl(ControlType.NavigationControl, ControlPosition.TopRight);
-        await _map.AddControl(ControlType.GeolocateControl, ControlPosition.TopRight);
-        await _map.AddControl(ControlType.GlobeControl, ControlPosition.TopRight);
     }
 }
