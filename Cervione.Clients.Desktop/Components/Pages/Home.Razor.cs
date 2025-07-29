@@ -25,7 +25,7 @@ public sealed partial class Home : ComponentBase
 
     public List<Device> Devices { get; set; } = [];
     public List<Group> Groups { get; set; } = [];
-    
+
     private MapLibre _map = new MapLibre();
     private MapOptions Options => new MapOptions
     {
