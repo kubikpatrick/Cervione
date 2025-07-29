@@ -86,3 +86,38 @@ h1:focus {
         padding-left: env(safe-area-inset-left);
     }
 }
+
+.marker {
+    width: 45px;
+    height: 45px;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.me-marker {
+    width: 20px;
+    height: 20px;
+    background-color: #48acf0;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    
+    50% {
+        transform: scale(1.2);
+    }
+    
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
