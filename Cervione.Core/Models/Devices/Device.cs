@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Cervione.Core.Models.Devices;
 
 [PrimaryKey(nameof(Id))]
-public sealed class Device
+public sealed class Device : IPositionable
 {
     public Device()
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Cervione.Core.Models.Identity;
 
-public sealed class User : IdentityUser
+public sealed class User : IdentityUser, IPositionable
 {
     public User()
     {
