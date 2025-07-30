@@ -54,7 +54,7 @@ public sealed partial class Home : ComponentBase
             DesiredAccuracy = GeolocationAccuracy.High,
             RequestFullAccuracy = true
         });
-
+        
         if (position is not null)
         {
             await _map.SetZoom(14);
