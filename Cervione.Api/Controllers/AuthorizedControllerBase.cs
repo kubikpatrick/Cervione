@@ -9,5 +9,5 @@ namespace Cervione.Api.Controllers;
 [ApiController]
 public abstract class AuthorizedControllerBase : ControllerBase
 {
-    public string CurrentUserId => User.FindFirstValue(JwtRegisteredClaimNames.Sub) ?? throw new InvalidOperationException();
+    protected string CurrentUserId => User.FindFirstValue(JwtRegisteredClaimNames.Sub) ?? throw new InvalidOperationException();
 }
