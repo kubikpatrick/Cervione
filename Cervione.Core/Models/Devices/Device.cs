@@ -24,6 +24,9 @@ public sealed class Device : IMarkable
     public string Hash { get; set; }
     
     [Required]
+    public bool IsPrincipal { get; set; }
+    
+    [Required]
     public DeviceType Type { get; set; }
     
     [Required]
