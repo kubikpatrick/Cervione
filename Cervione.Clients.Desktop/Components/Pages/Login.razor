@@ -14,14 +14,16 @@
             </div>
 
             <div class="col-12">
-                <InputText @bind-Value="_request.Password" type="password" class="form-control"placeholder="Password" required />
+                <InputText @bind-Value="_request.Password" type="password" class="form-control" placeholder="Password" required />
             </div>
 
             <div class="d-grid">
                 <button class="btn btn-outline-success" type="submit">Login</button>
             </div>
+            
+            <div class="d-grid mt-4">
+                <p class="text-center">No account yet ? <a href="/sign-up" class="text-decoration-none">Sign up</a>.</p>
+            </div>
         </div>
     </EditForm> 
-    
-    <a href="/sign-up" class="btn btn-outline-success" type="submit">Sign up</a>
 </div>
