@@ -1,7 +1,10 @@
 ﻿using System.Net.Http.Json;
 
 using Cervione.Core.Models.Groups;
+using Cervione.Clients.Shared.Services;
 using Device = Cervione.Core.Models.Devices.Device;
+
+
 
 using Community.Blazor.MapLibre;
 using Community.Blazor.MapLibre.Models;
@@ -17,10 +20,15 @@ namespace Cervione.Clients.Desktop.Components.Pages;
 public sealed partial class Home : ComponentBase
 {
     private readonly HttpClient _http;
-    
-    public Home(HttpClient http)
+    private readonly IApiContextAccessor _accessor;
+
+    private readonly NavigationManager _navigation;
+
+    public Home(HttpClient http, IApiContextAccessor accessor, NavigationManager navigation)
     {
         _http = http;
+        _accessor = accessor;
+        _navigation = navigation;
     }
 
     public List<Device> Devices { get; set; } = [];
@@ -73,6 +81,14 @@ public sealed partial class Home : ComponentBase
         await RenderMarkersAsync();
     }
 
+
+    private async Task DeleteToken()
+    {
+        await _accessor.RemoveTokenAsync();
+        _navigation.NavigateTo("/login");
+    }
+    
+
     private async Task RenderMarkersAsync()
     {
         foreach (var device in Devices)
@@ -82,7 +98,7 @@ public sealed partial class Home : ComponentBase
                 OpacityWhenCovered = "0",
                 Extensions = new MarkerOptionsExtensions
                 {
-                    HtmlContent = "<img src='https://i.pravatar.cc/300' class='marker' />" 
+                    HtmlContent = "<img src='https://i.pravatar.cc/300' class='marker' />"
                 }
             }, new LngLat(device.Position.Longitude, device.Position.Latitude));
         }

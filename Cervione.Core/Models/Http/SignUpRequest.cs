@@ -18,14 +18,14 @@ public sealed class SignUpRequest
     
     [EmailAddress]
     [Required]
-    public required string Email { get; init; }
+    public string Email { get; set; }
     
     [DataType(DataType.Password)]
     [Required]
-    public required string Password { get; init; }
+    public string Password { get; set; }
     
     [Compare(nameof(Password))]
     [DataType(DataType.Password)]
     [Required]
-    public required string ConfirmPassword { get; init; }
+    public string ConfirmPassword { get; set; }
 }
