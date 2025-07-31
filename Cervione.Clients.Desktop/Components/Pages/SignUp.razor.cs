@@ -1,12 +1,10 @@
 using System.Net.Http.Json;
 
 using Cervione.Clients.Desktop.Components.Layout;
-using Cervione.Clients.Shared.Providers;
 using Cervione.Clients.Shared.Services;
 using Cervione.Core.Models.Http;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Cervione.Clients.Desktop.Components.Pages;
 
@@ -14,20 +12,12 @@ namespace Cervione.Clients.Desktop.Components.Pages;
 public sealed partial class SignUp : ComponentBase
 {
     private readonly IApiContextAccessor _accessor;
-    private readonly JwtAuthenticationStateProvider _authenticationStateProvider;
     private readonly HttpClient _http;
     private readonly NavigationManager _navigation;
     
-    public SignUp
-    (
-        IApiContextAccessor accessor,
-        AuthenticationStateProvider authenticationStateProvider, 
-        HttpClient http, 
-        NavigationManager navigation
-    )
+    public SignUp(IApiContextAccessor accessor, HttpClient http, NavigationManager navigation)
     {
         _accessor = accessor;
-        _authenticationStateProvider = authenticationStateProvider as JwtAuthenticationStateProvider;
         _http = http;
         _navigation = navigation;
     }
@@ -47,18 +37,14 @@ public sealed partial class SignUp : ComponentBase
 
     private async Task SubmitAsync()
     {
-        var response = await _http.PostAsJsonAsync(Path.Join(_serverUrl, "/authentication/login"), _request);
+        var response = await _http.PostAsJsonAsync(Path.Join(_serverUrl, "/authentication/sign-up"), _request);
         if (!response.IsSuccessStatusCode)
         {
             return;
         }
         
-        var content = await response.Content.ReadFromJsonAsync<TokenResponse>();
-
-        await _accessor.SetTokenAsync(content.Token);
         await _accessor.SetServerUrlAsync(_serverUrl);
-        await _authenticationStateProvider.NotifyAuthenticationAsync(content.Token);
         
-        _navigation.NavigateTo("/");
+        _navigation.NavigateTo("/login");
     }
 }
