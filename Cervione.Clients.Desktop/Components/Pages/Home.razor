@@ -6,11 +6,10 @@
 
 <div class="row g-0">
     <div class="col-lg-3 col-xl-2" style="background-color: #f1f1ee;">
-        <button @onclick="DeleteToken" class="btn btn-primary">Delete token</button>
-        <Sidebar Devices="Devices" />
+        <Sidebar Devices="Devices" Groups="Groups"/>
     </div>
 
     <div class="col-lg-9 col-xl-10">
-        <MapLibre Options="Options" @ref="_map" OnStyleLoad="OnStyleLoaded" Class="vh-100 w-100" />
+        <MapLibre Options="Options" @ref="_map" OnLoad="OnMapLoad" Class="vh-100 w-100" />
     </div>
 </div>
