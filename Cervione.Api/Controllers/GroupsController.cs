@@ -37,4 +37,41 @@ public sealed class GroupsController : AuthorizedControllerBase
 
         return Ok(group);
     }
+
+    [HttpPost]
+    public async Task<ActionResult<Group>> Create([FromQuery] string name)
+    {
+        bool exists = await _context.Groups.AnyAsync(g => g.Name == name);
+        if (exists)
+        {
+            return Conflict();
+        }
+        
+        await _context.Groups.AddAsync(new Group
+        {
+            Name = name,
+            CreatedAt = DateTime.UtcNow,
+            Code = Guid.NewGuid().ToString(),
+            UserId = CurrentUserId
+        });
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> Delete([FromRoute] string id)
+    {
+        var group = await _context.Groups.FindAsync(id);
+        if (group is null || group.UserId != CurrentUserId)
+        {
+            return NotFound();
+        }
+        
+        _context.Groups.Remove(group);
+        
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
