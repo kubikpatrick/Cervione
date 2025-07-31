@@ -1,4 +1,4 @@
-﻿namespace Cervione.Clients.Shared.Services.Api;
+﻿namespace Cervione.Clients.Shared.Services;
 
 public interface IServerUrlAccessor
 {
