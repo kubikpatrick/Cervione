@@ -41,7 +41,11 @@ public sealed class GroupsController : AuthorizedControllerBase
     [HttpPost]
     public async Task<ActionResult<Group>> Create([FromQuery] string name)
     {
-        bool exists = await _context.Groups.AnyAsync(g => g.Name == name);
+        bool exists = await _context.Groups.AnyAsync(
+            g => g.Name == name && 
+            g.UserId == CurrentUserId
+        );
+        
         if (exists)
         {
             return Conflict();
@@ -52,8 +56,17 @@ public sealed class GroupsController : AuthorizedControllerBase
             Name = name,
             CreatedAt = DateTime.UtcNow,
             Code = Guid.NewGuid().ToString(),
-            UserId = CurrentUserId
+            UserId = CurrentUserId,
+            Members = 
+            [
+                new Member
+                {
+                    CreatedAt = DateTime.UtcNow,
+                    UserId = CurrentUserId
+                }
+            ]
         });
+        
         await _context.SaveChangesAsync();
 
         return Ok();
