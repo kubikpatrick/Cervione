@@ -11,7 +11,6 @@ using Community.Blazor.MapLibre.Models.Marker;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
 namespace Cervione.Clients.Desktop.Components.Pages;
 
