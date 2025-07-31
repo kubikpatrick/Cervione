@@ -30,6 +30,7 @@ public sealed class Member
 
     [NotMapped]
     public Group Group { get; set; }
-
+    
+    [NotMapped]
     public User User { get; set; }
 }
