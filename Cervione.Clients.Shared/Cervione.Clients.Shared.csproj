@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="InfiniLore.Lucide" Version="0.30.525" />
       <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.7" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.7" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
     </ItemGroup>
 
