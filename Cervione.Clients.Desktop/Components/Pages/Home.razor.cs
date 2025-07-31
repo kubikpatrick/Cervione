@@ -4,8 +4,6 @@ using Cervione.Core.Models.Groups;
 using Cervione.Clients.Shared.Services;
 using Device = Cervione.Core.Models.Devices.Device;
 
-
-
 using Community.Blazor.MapLibre;
 using Community.Blazor.MapLibre.Models;
 using Community.Blazor.MapLibre.Models.Control;
