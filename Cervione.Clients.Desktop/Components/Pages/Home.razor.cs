@@ -11,21 +11,21 @@ using Community.Blazor.MapLibre.Models.Marker;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Cervione.Clients.Desktop.Components.Pages;
 
 [Authorize]
 public sealed partial class Home : ComponentBase
 {
-    private readonly HttpClient _http;
     private readonly IApiContextAccessor _accessor;
-
+    private readonly HttpClient _http;
     private readonly NavigationManager _navigation;
 
-    public Home(HttpClient http, IApiContextAccessor accessor, NavigationManager navigation)
+    public Home(IApiContextAccessor accessor, HttpClient http, NavigationManager navigation)
     {
-        _http = http;
         _accessor = accessor;
+        _http = http;
         _navigation = navigation;
     }
 
