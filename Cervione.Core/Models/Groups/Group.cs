@@ -27,6 +27,9 @@ public sealed class Group
 
     [Required]
     public DateTime CreatedAt { get; set; }
+    
+    [Required]
+    public List<Member> Members { get; set; } = [];
 
     [Required]
     public string UserId { get; set; }
