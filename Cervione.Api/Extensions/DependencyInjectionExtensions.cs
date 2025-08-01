@@ -2,7 +2,7 @@
 
 using Cervione.Api.Data;
 using Cervione.Api.Services;
-using Cervione.Clients.Shared;
+using Cervione.Core;
 using Cervione.Core.Models.Identity;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;

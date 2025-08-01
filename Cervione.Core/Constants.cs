@@ -1,4 +1,4 @@
-﻿namespace Cervione.Clients.Shared;
+﻿namespace Cervione.Core;
 
 public readonly struct Constants
 {
