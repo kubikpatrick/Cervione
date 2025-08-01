@@ -47,9 +47,10 @@ public sealed partial class Home : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         Devices = await _http.GetFromJsonAsync<List<Device>>("/devices/me");
+        Groups = await _http.GetFromJsonAsync<List<Group>>("/groups/me");
     }
 
-    private async Task OnStyleLoaded()
+    private async Task OnMapLoad()
     {
         await _map.AddControl(ControlType.NavigationControl, ControlPosition.TopRight);
         await _map.AddControl(ControlType.GlobeControl, ControlPosition.TopRight);
