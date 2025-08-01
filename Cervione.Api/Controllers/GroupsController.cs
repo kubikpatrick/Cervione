@@ -1,4 +1,5 @@
 using Cervione.Api.Data;
+using Cervione.Api.Generators;
 using Cervione.Core.Models.Groups;
 
 using Microsoft.AspNetCore.Mvc;
@@ -55,7 +56,7 @@ public sealed class GroupsController : AuthorizedControllerBase
         {
             Name = name,
             CreatedAt = DateTime.UtcNow,
-            Code = Guid.NewGuid().ToString(),
+            Code = StringGenerator.Generate(8),
             UserId = CurrentUserId,
             Members = 
             [
