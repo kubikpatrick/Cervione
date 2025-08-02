@@ -1,5 +1,6 @@
 ﻿using Cervione.Clients.Shared;
 using Cervione.Clients.Shared.Services;
+using Cervione.Core;
 
 namespace Cervione.Clients.Desktop.Services;
 

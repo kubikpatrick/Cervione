@@ -1,12 +1,15 @@
-﻿/*#if (SampleContent)*/
+﻿@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+
+/*#if (SampleContent)*/
 html,
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Arimo";
 }
 
 :root {
   --primary: #0b61e0;
   --primary-hover: #084bb5;
+  --bs-secondary: #8c8c8c;
 }
 
 a,
@@ -34,6 +37,31 @@ a,
 
 .content {
   padding-top: 1.1rem;
+}
+
+.hero-image {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/globebackground.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4; /* juste l'image devient transparente */
+  z-index: 0;
+}
+
+.hero-image h1 {
+  position: relative;
+  z-index: 1;
 }
 
 /*#endif*/

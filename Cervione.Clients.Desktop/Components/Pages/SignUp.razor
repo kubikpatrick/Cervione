@@ -2,32 +2,29 @@
 
 <PageTitle>Sign up</PageTitle>
 
-<div class="d-flex justify-content-center align-items-center h-100 w-100">
-    <EditForm Model="_request" OnSubmit="SubmitAsync">
-        <div class="row gy-3 w-50 mx-auto">
-            <div class="col-12">
-                <InputText @bind-Value="_serverUrl" type="url" class="form-control" placeholder="Server URL" required />
-            </div>
-        
-            <div class="col-12">
-                <InputText @bind-Value="_request.Email" type="email" class="form-control" placeholder="Email" required />
-            </div>
-
-            <div class="col-12">
-                <InputText @bind-Value="_request.Password" type="password" class="form-control" placeholder="Password" required />
-            </div>
-            
-            <div class="col-12">
-                <InputText @bind-Value="_request.ConfirmPassword" type="password" class="form-control" placeholder="Confirm password" required />
-            </div>
-
-            <div class="d-grid">
-                <button class="btn btn-outline-success" type="submit">Sign up</button>
-            </div>
-            
-            <div class="d-grid mt-4">
-                <p class="text-center">Already have an account ? <a href="/login" class="text-decoration-none">Login</a>.</p>
-            </div>
+<div class="d-flex justify-content-center align-items-center h-100 w-100 flex-column">
+    <div class="d-flex flex-column align-items-start text-start" style="max-width: 400px; width: 100%;">
+        <div class="mb-3">
+            <h1 class="fs-1 fw-bold">Create an Account</h1>
+            <h3 class="fs-6 text-secondary">Fill in the details below</h3>
         </div>
-    </EditForm>
+
+        <EditForm Model="_request" OnSubmit="SubmitAsync" class="w-100">
+            <div class="d-flex flex-column gap-2 w-100">
+                <InputText @bind-Value="_serverUrl" type="url" class="form-control" placeholder="Server URL" required />
+                <InputText @bind-Value="_request.Email" type="email" class="form-control" placeholder="Email" required />
+                <InputText @bind-Value="_request.Password" type="password" class="form-control" placeholder="Password" required />
+                <InputText @bind-Value="_request.ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" required />
+
+                <div class="w-100 py-3">
+                    <button class="btn btn-primary w-100" type="submit">Sign Up</button>
+                </div>
+            </div>
+        </EditForm>
+
+        <p class="fs-6 mt-3">
+            Already have an account? 
+            <a href="/login">Login</a>
+        </p>
+    </div>
 </div>
